@@ -1,4 +1,4 @@
-#Loader {
+#TaskDBLoader {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -10,4 +10,7 @@
   background-color: white;
 }
 
-#Loader img.icon {height: 35px;}
+#TaskDBLoader .page-title {
+    font-size: 14.3px;
+    margin-bottom: 12px;
+}
