@@ -1,0 +1,32 @@
+button {
+    border-style: none;
+    font-family: 'Poppins';
+    cursor: pointer;
+}
+
+button.is-large {
+    padding: 15px 20px;
+    font-size: 14.5px;
+}
+
+button.is-primary {
+    background-color: #03a9f4;
+    color: white;
+}
+
+button.is-primary:hover {
+    background-color: #5ec9f9;
+}
+
+button.is-rounded {
+    border-radius: 8px;
+}
+
+button.is-transparent {
+    background-color: transparent;
+    color: #747474;
+}
+
+button.is-transparent:hover {
+    background-color: #efefef;
+}

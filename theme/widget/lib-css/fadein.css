@@ -1,0 +1,5 @@
+.fadein-wrapper {
+    animation: fadeIn 1s linear;
+    animation-fill-mode: both;
+    animation-delay: 1s;
+}

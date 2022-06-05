@@ -10,3 +10,5 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/rterrado/beta/strawberry-js/v1.2.0.js"></script>
 <!-- Widget JS -->
 <script type="text/javascript" src="/widget/app.js"></script>
+<!-- Moment JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/moment@2.29.3/moment.min.js"></script>

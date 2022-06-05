@@ -9,6 +9,7 @@ app.service('TaskDB',function($scope){
             let rawDB = localStorage.getItem('tskdb');
             if (null===rawDB) {
                 this.initialize();
+                rawDB = localStorage.getItem('tskdb');
             }
             this.database = JSON.parse(rawDB);
             this.prepareTasks();

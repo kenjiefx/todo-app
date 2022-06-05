@@ -13,3 +13,9 @@
 .dir-col {
     flex-direction: column;
 }
+
+.evc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
