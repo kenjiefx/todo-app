@@ -12,16 +12,29 @@ app.service('TaskDB',function($scope){
                 rawDB = localStorage.getItem('tskdb');
             }
             this.database = JSON.parse(rawDB);
+            this.meta = this.database.meta;
+            this.tasks = this.database.tasks;
+            this.user = this.database.user;
             this.prepareTasks();
         }
         prepareTasks(){
-            $scope.Task = this.database.tasks;
+            $scope.Task.list = this.database.tasks;
             $scope.Task.isEmpty = Object.keys(this.database.tasks).length === 0;
+            if ($scope.Task.isEmpty) {
+                $scope.Task.list = [];
+            }
+        }
+        addTask(Task){
+            $scope.Task.list.push(Task);
+            $scope.Task.isEmpty = false;
+            this.save();
+            location.reload();
         }
         initialize(){
             $scope.PageSvc.setStatus('initializing');
-            this.created = Date.now();
-            this.tasks = {};
+            this.meta = {
+                createdAt: Date.now()
+            }
             this.user = {
                 name: null
             };
@@ -32,11 +45,10 @@ app.service('TaskDB',function($scope){
         }
         export(){
             return {
-                meta: {
-                    created: this.created
-                },
+                meta: this.meta,
                 user: this.user,
-                tasks: this.tasks
+                tasks: $scope.Task.list,
+                updatedAt: Date.now()
             }
         }
         save(){

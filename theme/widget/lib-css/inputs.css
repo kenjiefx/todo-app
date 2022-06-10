@@ -12,7 +12,7 @@ fieldset:focus-within {
 input {
     border-style: none;
     width: 100%;
-    padding: 16px 15px;
+    padding: 12px 14px;
     font-family: 'Poppins';
     font-size: 14.5px;
     font-weight: 400;

@@ -7,6 +7,10 @@
     margin-left: 8px;
 }
 
+.mg-left-md{
+    margin-left: 14px;
+}
+
 .mg-top-sm {
     margin-top: 8px;
 }
@@ -15,6 +19,18 @@
     margin-top: 14px;
 }
 
+.mg-top-rg {
+    margin-top: 16.5px;
+}
+
 .mg-top-lg {
     margin-top: 20px;
+}
+
+.spacer-lg-border {
+    border-top: solid;
+    border-top-width: 1px;
+    color: #f1f1f1;
+    margin-top: 24px;
+    margin-bottom: 24px;
 }

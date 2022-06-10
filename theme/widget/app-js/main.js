@@ -1,3 +1,4 @@
+strawberry.debug = true;
 strawberry.create('app',function(){
     setTimeout(function(){
         $("#Loader").fadeOut();
