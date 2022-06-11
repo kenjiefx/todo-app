@@ -4,7 +4,7 @@ app.factory('TaskModel',function(){
             this.ticketId = null;
             this.id = Math.floor(Date.now()*Math.random());
             this.description = description;
-            this.createdAt = moment().format('MMMM Do YYYY, h:mm:ss a');
+            this.createdAt = Date.now();
             this.status = 'new';
             this.updatedAt = null;
             this.todos = [];

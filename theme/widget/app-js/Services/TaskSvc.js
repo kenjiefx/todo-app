@@ -77,15 +77,24 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
         }
         searchByStatus(status,pageNum){
             $scope.TaskViewList = {
-                resultCount: 0,
+                count: {
+                    total: 0,
+                    pending: 0,
+                    finished: 0,
+                    finishedPercent: 0
+                },
                 resultList: [],
                 resultNumOfPages: 0
             };
             if (status=='all') {
                 for (var i = 0; i < $scope.Task.list.length; i++) {
-                    $scope.TaskViewList.resultCount++;
+                    $scope.TaskViewList.count.total++;
+                    if ($scope.Task.list[i].status==='new'||$scope.Task.list[i].status==='pending') {
+                        $scope.TaskViewList.count.pending++;
+                    }
                     $scope.TaskViewList.resultList.push($scope.Task.list[i]);
                 }
+                $scope.finishedPercent = $scope.TaskViewList.count.total / $scope.TaskViewList.count.finished;
             }
             $patch('TaskViewListing');
         }

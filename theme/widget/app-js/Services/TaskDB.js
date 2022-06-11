@@ -54,6 +54,10 @@ app.service('TaskDB',function($scope){
         save(){
             localStorage.setItem('tskdb',JSON.stringify(this.export()));
         }
+        reset(){
+            localStorage.removeItem('tskdb');
+            location.reload();
+        }
     }
     return TaskDB;
 });
