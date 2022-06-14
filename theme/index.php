@@ -17,6 +17,9 @@
                 <div xif="PageSvc.status=='create-task'" class="h100">
                     <?php include SERVER_ROOT.'/theme/statuses/create-task.php'; ?>
                 </div>
+                <div xif="PageSvc.status=='view-task'" class="h100">
+                    <?php include SERVER_ROOT.'/theme/statuses/view-task.php'; ?>
+                </div>
                 <div xif="PageSvc.status=='initializing'">
                     <?php include SERVER_ROOT.'/theme/sections/taskdb.init.php'; ?>
                 </div>

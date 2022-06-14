@@ -95,6 +95,40 @@
     margin-right: 50px;
 }
 
+.task-status-option.is-active {
+    background-color: white;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color: #cfcfcf;
+}
+
+.view-task-wrapper {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.my-task-page-card {
+    background-color: white;
+    margin-top: 20px;
+    padding: 30px 0px;
+}
+
+.my-task-page-section-title {
+    padding: 0px 30px;
+    font-size: 13.5px;
+    font-family: 'Poppins';
+    margin-bottom: 8px;
+}
+
+.my-task-page-card-padding {
+    padding: 0px 30px;
+}
+
+.task-created-at-view {
+    font-weight: 300;
+}
+
 @media (min-width:760px){
     .task-list-col-2 {
         flex-direction: row-reverse;

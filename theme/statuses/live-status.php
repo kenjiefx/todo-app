@@ -32,13 +32,13 @@
                         </div>
 
                         <div class="task-status-options">
-                            <div class="task-status-option">All 🙆‍♂️</div>
+                            <div class="task-status-option" xstyle="TaskSvc.isListStatus('all')">All 🙆‍♂️</div>
                             <div class="task-status-option">Pending 🤦</div>
                             <div class="task-status-option">Finished 🙅</div>
                         </div>
                         <div class="task-list-viewer task-viewer-card">
                             <ul xrepeat="TaskViewList.resultList as task">
-                                <li class="task-item">
+                                <li xclick="TaskSvc.viewTask({{$index}})" class="task-item">
                                     <div class="task-item-wrapper">
                                         <div class="task-list-col-1">
                                             <div class="task-date pop small-text">{{$parent.UtilSvc.toFormatDate(task.createdAt)}}</div>

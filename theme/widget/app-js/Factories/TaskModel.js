@@ -13,7 +13,7 @@ app.factory('TaskModel',function(){
             this.ticketId = ticketId;
         }
         setDate(){
-
+            
         }
         setDescription(description){
             this.description = description;

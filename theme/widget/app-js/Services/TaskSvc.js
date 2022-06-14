@@ -25,6 +25,7 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
             if (this.taskMode==='create') {
                 let toDoItemVal = $(inputToDoItem.$element).val();
                 this.taskModel.todos[toDoIndex].description = toDoItemVal;
+                this.taskModel.todos[toDoIndex].completed = false;
             }
         }
         removeToDoItem(taskIndex,toDoIndex,inputToDoItem){
@@ -84,7 +85,8 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
                     finishedPercent: 0
                 },
                 resultList: [],
-                resultNumOfPages: 0
+                resultNumOfPages: 0,
+                statusOnView: status
             };
             if (status=='all') {
                 for (var i = 0; i < $scope.Task.list.length; i++) {
@@ -98,12 +100,39 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
             }
             $patch('TaskViewListing');
         }
+        isListStatus(status){
+            if (status===$scope.TaskViewList.statusOnView) {
+                return 'is-active';
+            }
+            return '';
+        }
         countToDos(todos){
             let counter = 0;
             for (let i = 0; i < todos.length; i++) {
                 counter++;
             }
             return counter;
+        }
+        viewTask(taskIndex){
+            console.log(taskIndex);
+            $scope.Task.focus = $scope.Task.list[taskIndex];
+            $scope.Task.focus.metrics = {
+                completedTodos: 0,
+                totalToDos: 0,
+                finishedTodosPercent: 0
+            };
+
+            for (var i = 0; i < $scope.Task.focus.todos.length; i++) {
+                let todo = $scope.Task.focus.todos[i];
+                if (todo.completed) $scope.Task.focus.metrics.completedTodos++;
+            }
+            if ($scope.Task.focus.metrics.totalToDos>0) {
+                $scope.Task.focus.metrics.finishedTodosPercent = $scope.Task.focus.metrics.completedTodos / $scope.Task.focus.metrics.totalToDos;
+            }
+            $scope.PageSvc.setStatus('view-task');
+            this.taskMode = 'view';
+
+
         }
     }
     return TaskSvc;

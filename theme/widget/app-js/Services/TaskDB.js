@@ -3,7 +3,8 @@ app.service('TaskDB',function($scope){
         constructor(){
             $scope.Task = {
                 list: [],
-                isEmpty: true
+                isEmpty: true,
+                focus:null
             };
             this.hasTasks = false;
             let rawDB = localStorage.getItem('tskdb');
