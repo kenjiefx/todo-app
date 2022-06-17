@@ -5,6 +5,7 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
             this.hasError = false;
             this.errorMessage = '';
             this.taskMode = null;
+            $scope.Task.focus = {};
         }
         create(backtoStatus){
             this.taskModel = new TaskModel();
@@ -26,7 +27,13 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
                 let toDoItemVal = $(inputToDoItem.$element).val();
                 this.taskModel.todos[toDoIndex].description = toDoItemVal;
                 this.taskModel.todos[toDoIndex].completed = false;
+                this.taskModel.todos[toDoIndex].createdAt = Date.now();
+                this.taskModel.todos[toDoIndex].updatedAt = Date.now();
+                this.taskModel.todos[toDoIndex].completedAt = null;
+                this.taskModel.todos[toDoIndex].status = 'pending';
             }
+            console.log(taskIndex);
+            console.log(toDoIndex);
         }
         removeToDoItem(taskIndex,toDoIndex,inputToDoItem){
             if (this.taskMode==='create') {
@@ -114,8 +121,11 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
             return counter;
         }
         viewTask(taskIndex){
-            console.log(taskIndex);
             $scope.Task.focus = $scope.Task.list[taskIndex];
+            $scope.Task.focus.focusIndex = taskIndex;
+            $scope.Task.focus.states = {
+                todoEditSaveItems: false
+            };
             $scope.Task.focus.metrics = {
                 completedTodos: 0,
                 totalToDos: 0,
@@ -124,15 +134,73 @@ app.service('TaskSvc',function($scope,TaskModel,$patch){
 
             for (var i = 0; i < $scope.Task.focus.todos.length; i++) {
                 let todo = $scope.Task.focus.todos[i];
+                $scope.Task.focus.metrics.totalToDos++;
                 if (todo.completed) $scope.Task.focus.metrics.completedTodos++;
             }
             if ($scope.Task.focus.metrics.totalToDos>0) {
-                $scope.Task.focus.metrics.finishedTodosPercent = $scope.Task.focus.metrics.completedTodos / $scope.Task.focus.metrics.totalToDos;
+                $scope.Task.focus.metrics.finishedTodosPercent = (($scope.Task.focus.metrics.completedTodos / $scope.Task.focus.metrics.totalToDos)*100).toFixed(0);
             }
             $scope.PageSvc.setStatus('view-task');
             this.taskMode = 'view';
 
 
+        }
+        updateViewTaskMetrics(){
+            if ($scope.Task.focus.metrics.totalToDos>0) {
+                $scope.Task.focus.metrics.finishedTodosPercent = (($scope.Task.focus.metrics.completedTodos / $scope.Task.focus.metrics.totalToDos)*100).toFixed(0);
+            }
+            $patch('completedTaskPercent');
+        }
+        completeTodo(todoIndex){
+            $scope.Task.focus.todos[todoIndex].completed = true;
+            $scope.Task.focus.todos[todoIndex].status = 'completed';
+            $scope.Task.focus.todos[todoIndex].completedAt = Date.now();
+            $scope.Task.focus.todos[todoIndex].updatedAt = Date.now();
+            $scope.Task.focus.metrics.completedTodos++;
+            $scope.TaskDB.save();
+            this.updateViewTaskMetrics();
+            $patch('viewTaskTodoList');
+        }
+        unCompleteTodo(todoIndex){
+            $scope.Task.focus.todos[todoIndex].completed = false;
+            $scope.Task.focus.todos[todoIndex].status = 'pending';
+            $scope.Task.focus.todos[todoIndex].completedAt = null;
+            $scope.Task.focus.todos[todoIndex].updatedAt = Date.now();
+            $scope.Task.focus.metrics.completedTodos--;
+            $scope.TaskDB.save();
+            this.updateViewTaskMetrics();
+            $patch('viewTaskTodoList');
+        }
+        showTodoSaveChanges(toDoElement){
+            $(toDoElement).addClass('todo-input-not-saved');
+            if (!$scope.Task.focus.states.todoEditSaveItems) {
+                $scope.Task.focus.states.todoEditSaveItems = true;
+                $('#todoEditSaveItems').fadeIn();
+            }
+        }
+        hideTodoSaveChanges(toDoElement){
+            if ($scope.Task.focus.states.todoEditSaveItems) {
+                $('.view-todo-input-all').removeClass('todo-input-not-saved');
+                $scope.Task.focus.states.todoEditSaveItems = false;
+                $('#todoEditSaveItems').fadeOut();
+            }
+        }
+        saveTodoSaveChanges(){
+            if ($scope.Task.focus.states.todoEditSaveItems) {
+                let todoinputall = $('.view-todo-input-all');
+                for (var i = 0; i < todoinputall.length; i++) {
+                    let taskIndex = todoinputall[i].dataset.taskindex;
+                    let todoIndex = todoinputall[i].dataset.todoindex;
+                    $scope.Task.list[taskIndex].todos[todoIndex].description = todoinputall[i].value;
+                    // console.log($scope.Task.list[taskIndex].todos[todoIndex]);
+                    // console.log($scope.Task.list[taskIndex].todos);
+                }
+                //console.log($scope.Task.list[0].todos);
+                $('.view-todo-input-all').removeClass('todo-input-not-saved');
+                $scope.Task.focus.states.todoEditSaveItems = false;
+                $('#todoEditSaveItems').fadeOut();
+                $scope.TaskDB.save();
+            }
         }
     }
     return TaskSvc;
