@@ -21,11 +21,11 @@ if (is_dir($app.'/Services')) {
     }
 }
 
-if (is_dir($app.'/Scopes')) {
-    $scopes = scandir($app.'/Scopes');
-    foreach ($scopes as $scope) {
-        if ($scope!=='.'&&$scope!=='..') {
-            include $app.'/Scopes/'.$scope;
-        }
-    }
-}
+// if (is_dir($app.'/Scopes')) {
+//     $scopes = scandir($app.'/Scopes');
+//     foreach ($scopes as $scope) {
+//         if ($scope!=='.'&&$scope!=='..') {
+//             include $app.'/Scopes/'.$scope;
+//         }
+//     }
+// }
