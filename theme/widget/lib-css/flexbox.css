@@ -10,6 +10,10 @@
     justify-content: center;
 }
 
+.jspace-bet {
+    justify-content: space-between;
+}
+
 .dir-col {
     flex-direction: column;
 }

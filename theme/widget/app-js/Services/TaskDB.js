@@ -51,6 +51,7 @@ app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
                 let taskDB = new TaskDB();
                 taskDB.saveSnapshot();
             }
+            callback();
         }
     };
 });

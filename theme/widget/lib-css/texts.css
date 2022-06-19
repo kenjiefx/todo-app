@@ -42,3 +42,7 @@
 .ltr-space-3 {
     letter-spacing: 0.020em;
 }
+
+.ltr-space--3 {
+    letter-spacing: -0.020em;
+}

@@ -14,6 +14,19 @@
                         include SERVER_ROOT.'/theme/sections/bootui.php';
                     ?>
                 </div>
+                <div xif="PageSvc.status=='welcome'" class="h100">
+                    <div class="evc h100">
+                        <div class="card-width">
+                            <div class="large-text primetext fw600 ltr-space--3">Welcome! 🙋‍♂️</div>
+                            <div class="mg-top-sm"></div>
+                            <div class="small-text primetext fw300 ltr-space-9">Your to do list is empty. Create a new task and have some fun!</div>
+                            <div class="mg-top-rg"></div>
+                            <div class="mg-top-rg"></div>
+                            <div class="mg-top-rg"></div>
+                            <button class="is-primary is-rounded is-large" type="button" name="button">Create Task</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </app>
         <script type="text/javascript">
