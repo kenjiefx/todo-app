@@ -6,7 +6,15 @@
     </head>
     <body class="bg-page">
         <?php include SERVER_ROOT.'/theme/sections/loader.php'; ?>
-        <app id="main" xscope="TaskDBInit" class="h100">
+        <app xscope="TaskDBInit" id="main">
+            <div xpatch="@PageStatus" class="hdv100">
+                <div xif="PageSvc.status=='onload'" class="h100">
+                    <?php
+                        function bootUIMessage() {return 'Heating up Task Database...';}
+                        include SERVER_ROOT.'/theme/sections/bootui.php';
+                    ?>
+                </div>
+            </div>
         </app>
         <script type="text/javascript">
             <?php include SERVER_ROOT.'/theme/widget/app-js/Scopes/TaskDBInit.js'; ?>

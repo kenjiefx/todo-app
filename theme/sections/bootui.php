@@ -1,7 +1,7 @@
-<div id="TaskDBLoader">
+<div class="evc w100 h100">
     <div class="flex ac jc dir-col">
-        <div class="medium-text sub-text rub">
-            Heating up your Task Database...
+        <div class="small-text primetext fw300 ltr-space-9">
+            <?php echo bootUIMessage(); ?>
         </div>
         <div class="spacer-hb"></div>
         <div class="">

@@ -1,34 +1,44 @@
 .large-text {
     font-size: 2em;
-    font-weight: bold;
-    letter-spacing: -0.05em;
 }
 
 .regular-text {
     font-size: 1.5em;
-    font-weight: bold;
-    letter-spacing: -0.05em;
 }
 
 .medium-text {
-    font-size: 1.2px;
+    font-size: 1em;
 }
 
 .small-text {
-    font-size: 0.98px;
-}
-
-.grad-txt {
-    background: -webkit-linear-gradient(#e91e63, #3f51b5);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 0.88em;
 }
 
 
-.timestamp {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    font-family: 'Poppins';
-    color: #939393;
+.ltr-space-20 {
+    letter-spacing: 0.05em;
+}
+
+.ltr-space-17 {
+    letter-spacing: 0.045em;
+}
+
+.ltr-space-14 {
+    letter-spacing: 0.040em;
+}
+
+.ltr-space-12 {
+    letter-spacing: 0.035em;
+}
+
+.ltr-space-9 {
+    letter-spacing: 0.030em;
+}
+
+.ltr-space-6 {
+    letter-spacing: 0.025em;
+}
+
+.ltr-space-3 {
+    letter-spacing: 0.020em;
 }

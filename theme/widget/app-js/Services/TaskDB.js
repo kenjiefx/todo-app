@@ -1,11 +1,34 @@
-app.service('TaskDB',function($scope){
+app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
 
     class TaskDB {
         constructor(){
             this.createdAt = Date.now();
+            this.updatedAt = Date.now();
+            this.user = TaskDBUser.create();
+            this.tasks = TaskListManager.create();
+            this.meta = TaskDBMeta.create();
         }
         setCreatedAt(date){
             this.createdAt = date;
+        }
+        exportDB(){
+            return {
+                createdAt: this.createdAt,
+                updatedAt: this.updatedAt,
+                user: this.user,
+                tasks: this.tasks,
+                meta: this.meta
+            }
+        }
+        importDB(rawDB){
+            this.createdAt = rawDB.createdAt;
+            this.updatedAt = rawDB.updatedAt;
+            this.user = TaskDBUser.import(rawDB.user);
+            this.tasks = TaskListManager.import(rawDB.tasks);
+            this.meta = TaskDBMeta.import(rawDB.meta);
+        }
+        saveSnapshot(){
+            localStorage.setItem('tskdb',JSON.stringify(this.exportDB()));
         }
     }
 
@@ -13,75 +36,21 @@ app.service('TaskDB',function($scope){
     let hasInstance = function(){
         return (null!==rawDB) ? true : false;
     }
+    let taskDB = new TaskDB();
+    if (null!==rawDB) {
+        taskDB.importDB(JSON.parse(rawDB));
+    }
 
     return {
         hasInstance: hasInstance(),
+        isTaskEmpty:function(){
+            return taskDB.tasks.isEmpty();
+        },
         create:function(callback){
             if (!hasInstance()) {
                 let taskDB = new TaskDB();
+                taskDB.saveSnapshot();
             }
         }
     };
-    // class TaskDB {
-    //     constructor(){
-    //         $scope.Task = {
-    //             list: [],
-    //             isEmpty: true,
-    //             focus:null
-    //         };
-    //         this.hasTasks = false;
-    //         let rawDB = localStorage.getItem('tskdb');
-    //         if (null===rawDB) {
-    //             this.initialize();
-    //             rawDB = localStorage.getItem('tskdb');
-    //         }
-    //         this.database = JSON.parse(rawDB);
-    //         this.meta = this.database.meta;
-    //         this.tasks = this.database.tasks;
-    //         this.user = this.database.user;
-    //         this.prepareTasks();
-    //     }
-    //     prepareTasks(){
-    //         $scope.Task.list = this.database.tasks;
-    //         $scope.Task.isEmpty = Object.keys(this.database.tasks).length === 0;
-    //         if ($scope.Task.isEmpty) {
-    //             $scope.Task.list = [];
-    //         }
-    //     }
-    //     addTask(Task){
-    //         $scope.Task.list.push(Task);
-    //         $scope.Task.isEmpty = false;
-    //         this.save();
-    //         location.reload();
-    //     }
-    //     initialize(){
-    //         $scope.PageSvc.setStatus('initializing');
-    //         this.meta = {
-    //             createdAt: Date.now()
-    //         }
-    //         this.user = {
-    //             name: null
-    //         };
-    //         this.save();
-    //         setTimeout(function(){
-    //             $scope.PageSvc.setStatus('live');
-    //         },5000);
-    //     }
-    //     export(){
-    //         return {
-    //             meta: this.meta,
-    //             user: this.user,
-    //             tasks: $scope.Task.list,
-    //             updatedAt: Date.now()
-    //         }
-    //     }
-    //     save(){
-    //         localStorage.setItem('tskdb',JSON.stringify(this.export()));
-    //     }
-    //     reset(){
-    //         localStorage.removeItem('tskdb');
-    //         location.reload();
-    //     }
-    // }
-    // return TaskDB;
 });
