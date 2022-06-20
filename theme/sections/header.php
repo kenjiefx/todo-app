@@ -5,7 +5,7 @@
         </div>
         <div class="h100 flex ac jc">
             <div class="theme-selector">
-                <select xchange="ThemeSvc.switch()" xmodel="Theme.name" class="" name="">
+                <select xchange="ThemeSvc.switch()" xmodel="Theme.name" class="select no-border is-text primetext" name="">
                     <option value="light">Light Theme</option>
                     <option value="dark">Dark Theme</option>
                 </select>

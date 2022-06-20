@@ -30,7 +30,14 @@
 .spacer-lg-border {
     border-top: solid;
     border-top-width: 1px;
-    color: #f1f1f1;
     margin-top: 24px;
     margin-bottom: 24px;
+}
+
+.Light .spacer-lg-border {
+    color: #f1f1f1;
+}
+
+.Dark .spacer-lg-border {
+    color: #303030;
 }

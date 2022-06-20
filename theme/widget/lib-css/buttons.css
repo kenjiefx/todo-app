@@ -5,8 +5,8 @@ button {
 }
 
 button.is-large {
-    padding: 12px 16px;
-    font-size: 14.5px;
+    padding: 0.78em 1em;
+    font-size: 0.8em;
 }
 
 button.is-medium {

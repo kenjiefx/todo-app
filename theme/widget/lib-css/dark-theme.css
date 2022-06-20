@@ -1,3 +1,11 @@
 body.Dark {
     background-color: #282828;
 }
+
+.Dark .is-text {
+    color: #fbfbfb;
+}
+
+.Dark .select option {
+    background-color: #282828;
+}

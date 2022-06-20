@@ -12,12 +12,21 @@ fieldset:focus-within {
 input {
     border-style: none;
     width: 100%;
-    padding: 12px 14px;
+    padding: 0.6em 0.8em;
     font-family: 'Poppins';
-    font-size: 14.5px;
+    font-size: 0.9em;
     font-weight: 400;
     border-radius: 8px;
     color: #0a0a0a;
+    background-color: transparent;
+}
+
+input.todo-list-item {
+    font-size: 0.85em;
+}
+
+.Dark input {
+    color: #fbfbfb;
 }
 
 input:focus {
@@ -47,7 +56,7 @@ textarea {
     font-size: 14.5px;
     font-weight: 400;
     border-radius: 8px;
-    color: #0a0a0a;
+    background-color: transparent;
 }
 
 textarea:focus {

@@ -1,0 +1,11 @@
+.status {
+    width: max-content;
+    padding: 0.4em 0.8em;
+    border-radius: 100px;
+    font-size: 0.7em;
+}
+
+.status.is-pending {
+    background-color: #ff9800;
+    color: white;
+}

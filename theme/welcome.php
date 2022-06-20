@@ -6,6 +6,9 @@
     </head>
     <body class="bg-page">
         <?php include SERVER_ROOT.'/theme/sections/loader.php'; ?>
+        <header xscope="SiteHeader">
+            <?php include SERVER_ROOT.'/theme/sections/header.php'; ?>
+        </header>
         <app xscope="TaskDBInit" id="main">
             <div xpatch="@PageStatus" class="hdv100">
                 <div xif="PageSvc.status=='onload'" class="h100">
@@ -17,9 +20,9 @@
                 <div xif="PageSvc.status=='welcome'" class="h100">
                     <div class="evc h100">
                         <div class="card-width">
-                            <div class="large-text primetext fw600 ltr-space--3">Welcome! 🙋‍♂️</div>
+                            <div class="large-text primetext fw600 ltr-space--3 is-text">Welcome! 🙋‍♂️</div>
                             <div class="mg-top-sm"></div>
-                            <div class="small-text primetext fw300 ltr-space-9">Your to do list is empty. Create a new task and have some fun!</div>
+                            <div class="small-text primetext fw300 ltr-space-9 is-text">Your to do list is empty. Create a new task and have some fun!</div>
                             <div class="mg-top-rg"></div>
                             <div class="mg-top-rg"></div>
                             <div class="mg-top-rg"></div>
@@ -31,6 +34,7 @@
         </app>
         <script type="text/javascript">
             <?php include SERVER_ROOT.'/theme/widget/app-js/Scopes/TaskDBInit.js'; ?>
+            <?php include SERVER_ROOT.'/theme/widget/app-js/Scopes/SiteHeader.js'; ?>
         </script>
     </body>
 </html>

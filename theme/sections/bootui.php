@@ -1,6 +1,6 @@
 <div class="evc w100 h100">
     <div class="flex ac jc dir-col">
-        <div class="small-text primetext fw300 ltr-space-9">
+        <div class="small-text primetext fw300 ltr-space-9 is-text">
             <?php echo bootUIMessage(); ?>
         </div>
         <div class="spacer-hb"></div>

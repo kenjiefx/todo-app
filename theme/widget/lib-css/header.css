@@ -5,6 +5,7 @@
     height: 60px;
     z-index: 100;
     width: 100%;
+    background-color: white;
 }
 
 .Dark .header-body {
@@ -12,6 +13,7 @@
     border-bottom: solid;
     border-bottom-color: #4c4c4c;
     border-bottom-width: 1px;
+    background-color: #282828 !important;
 }
 
 .Light .header-body {

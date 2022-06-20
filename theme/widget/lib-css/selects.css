@@ -1,0 +1,11 @@
+select.select {
+    background: transparent;
+}
+
+select.no-border {
+    border-style: none;
+}
+
+select.no-border:focus {
+    outline: none;
+}
