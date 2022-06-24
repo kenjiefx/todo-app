@@ -39,6 +39,12 @@
                                     <fieldset>
                                         <textarea xmodel="Task.about" class="is-text" name="name" rows="2" cols="80"></textarea>
                                     </fieldset>
+                                    <div xpatch="@ErrorSvc_WhenTaskAboutIsEmpty">
+                                        <div xif="ErrorSvc.hasError is true">
+                                            <div class="mg-top-md"></div>
+                                            <div class="small-text subtext fw300 error-text">Error: Task description is required.</div>
+                                        </div>
+                                    </div>
                                     <div class="spacer-lg-border"></div>
                                     <div class="flex ac jspace-bet">
                                         <div class="">
@@ -72,6 +78,12 @@
                                 <div class="mg-top-md"></div>
                                 <button xclick="TaskSvc.add.todo.item()" class="is-primary is-rounded is-large is-text" type="button" name="button">Add To Do Item</button>
                                 <div class="mg-top-md"></div>
+                                <div xpatch="@ErrorSvc_WhenToDoListIsEmpty">
+                                    <div xif="ErrorSvc.hasError is true">
+                                        <div class="small-text subtext fw300 error-text">Error: At least 1 to do item is required.</div>
+                                        <div class="mg-top-md"></div>
+                                    </div>
+                                </div>
                                 <div xpatch="@TaskToDoList" class="mg-top-rg">
                                     <ul xrepeat="Task.todos as todo">
                                         <li class="mg-top-sm">

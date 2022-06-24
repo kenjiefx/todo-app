@@ -1,4 +1,4 @@
-app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,$patch){
+app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch){
 
     let purgeNewToDoItems = function(){
         let tmpTodos = [];
@@ -33,9 +33,25 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,$patch){
         $scope.TaskSvc = {
             task: {
                 create: function(){
+                    let acceptable = true;
                     purgeNewToDoItems();
-                    console.log($scope.Task);
+                    if ($scope.Task.about.trim()==='') {
+                        ErrorSvc.show('WhenTaskAboutIsEmpty');
+                        acceptable = false;
+                    } else {
+                        ErrorSvc.clear('WhenTaskAboutIsEmpty');
+                    }
+                    if ($scope.Task.todos.length===0) {
+                        ErrorSvc.show('WhenToDoListIsEmpty');
+                        acceptable = false;
+                    } else {
+                        ErrorSvc.clear('WhenToDoListIsEmpty');
+                    }
                     $patch('TaskToDoList');
+                    if (acceptable) {
+                        TaskDB.addTask($scope.Task);
+                        //location.href = '/dashboard';
+                    }
                 }
             },
             add:{
@@ -43,6 +59,7 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,$patch){
                     item:function(){
                         let toDoItem = new ToDoItem();
                         $scope.Task.todos.push(toDoItem);
+                        ErrorSvc.clear('WhenToDoListIsEmpty');
                         $patch('TaskToDoList');
                     }
                 }

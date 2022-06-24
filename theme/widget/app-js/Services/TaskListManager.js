@@ -3,7 +3,7 @@ app.service('TaskListManager',function(){
         constructor(){
             this.createdAt = Date.now();
             this.updatedAt = Date.now();
-            this.taskList = {};
+            this.taskList = [];
         }
         setCreatedAt(date){
             this.createdAt = date;
@@ -14,8 +14,11 @@ app.service('TaskListManager',function(){
             this.taskList = rawData.taskList;
         }
         isEmpty(){
-            console.log('asdads');
-            return true;
+            return (this.taskList.length===0);
+        }
+        pushTask(Task){
+            console.log(this.taskList);
+            this.taskList.push(Task);
         }
     }
 

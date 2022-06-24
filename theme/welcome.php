@@ -26,7 +26,7 @@
                             <div class="mg-top-rg"></div>
                             <div class="mg-top-rg"></div>
                             <div class="mg-top-rg"></div>
-                            <button class="is-primary is-rounded is-large" type="button" name="button">Create Task</button>
+                            <button xclick="toCreateTask()" class="is-primary is-rounded is-large" type="button" name="button">Create Task</button>
                         </div>
                     </div>
                 </div>

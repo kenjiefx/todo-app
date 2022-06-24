@@ -52,6 +52,13 @@ app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
                 taskDB.saveSnapshot();
             }
             callback();
+        },
+        addTask:function(Task){
+            taskDB.tasks.pushTask(Task);
+            taskDB.saveSnapshot();
+        },
+        getAllTasks:function(){
+            return taskDB.tasks.taskList;
         }
     };
 });

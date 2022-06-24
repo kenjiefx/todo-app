@@ -15,6 +15,11 @@
     line-height: 1.5em;
 }
 
+.x-small-text {
+    font-size: 0.80em;
+    line-height: 1.3em;
+}
+
 
 .ltr-space-20 {
     letter-spacing: 0.05em;
@@ -46,4 +51,8 @@
 
 .ltr-space--3 {
     letter-spacing: -0.020em;
+}
+
+.Light .lighter-text {
+    color: #7a7777;
 }
