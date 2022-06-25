@@ -38,10 +38,25 @@
     margin-bottom: 24px;
 }
 
+.spacer-md-border {
+    border-top: solid;
+    border-top-width: 1px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
 .Light .spacer-lg-border {
     color: #f1f1f1;
 }
 
+.Light .spacer-md-border {
+    color: #f1f1f1;
+}
+
 .Dark .spacer-lg-border {
+    color: #303030;
+}
+
+.Dark .spacer-md-border {
     color: #303030;
 }

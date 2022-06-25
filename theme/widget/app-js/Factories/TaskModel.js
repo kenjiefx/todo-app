@@ -12,6 +12,16 @@ app.factory('TaskModel',function(){
                 completed: 0
             }
         }
+        import(task){
+            this.createdAt = task.createdAt;
+            this.updatedAt = task.updatedAt
+            this.id = task.id;
+            this.about = task.about;
+            this.SalesforceTicketId = task.SalesforceTicketId;
+            this.status = task.status;
+            this.todos = task.todos;
+            this.metrics = task.metrics;
+        }
     }
     return TaskModel;
 });
