@@ -18,9 +18,7 @@
                     <div class="page-main">
                         <div class="w100 flex">
                             <div class="dashboard-sidebar">
-                                <div class="dashboard-sidebar-wrapper">
-                                    <?php include SERVER_ROOT.'/theme/sections/sidebar.php'; ?>
-                                </div>
+                                <?php include SERVER_ROOT.'/theme/sections/sidebar.php'; ?>
                             </div>
                             <div class="dashboard-tasklist dashdb">
                                 <div class="task-list-header">
@@ -64,7 +62,7 @@
                                     <button class="is-primary is-rounded is-large" type="button" name="button">Create Task</button>
                                 </div>
                             </div>
-                            <div class="dashboard-viewlist flex-grow-1">
+                            <div class="dashboard-viewlist dashdb flex-grow-1">
                                 <div xpatch="@TaskSingleView" class="w100">
                                     <div class="dashboard-section-spacer">
                                         <div class="flex ac jspace-bet">
@@ -76,6 +74,11 @@
                                                     <div class="small-text subtext fw300 is-text">To finish the task, complete your to-do items!</div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="spacer-lg-border"></div>
+                                    <div class="dashboard-section-spacer">
+                                        <div class="flex ac jspace-bet">
                                             <div class="flex ac">
                                                 <svg class="icon-std" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path><path d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"></path></svg>
                                                 <div class="mg-left-md">
@@ -92,6 +95,12 @@
                                     <div class="spacer-lg-border"></div>
                                 </div>
                             </div>
+                            <div class="dashboard-viewmetrics">
+                                <div class="dashboard-section-spacer">
+                                    <div class="small-text primetext fw500 ltr-space--3 is-text">App Activity</div>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,6 +111,10 @@
             <?php include SERVER_ROOT.'/theme/widget/app-js/Scopes/SiteHeader.js'; ?>
         </script>
         <style media="screen">
+
+            .dashboard-viewmetrics {
+                width: 250px;
+            }
             .dashboard-viewlist {
                 padding-top: 20px;
             }
@@ -125,16 +138,7 @@
                 border-color: #3e3e3e;
             }
             .dashboard-sidebar {
-                width: 350px;
-            }
-            .dashboard-sidebar-wrapper {
-                width: 350px;
-                height: 100%;
-                position: fixed;
-                border-right: solid;
-                border-width: 1px;
-                border-color: #d5d5d5;
-                background-color: #f7fdff;
+                width: 60px;
             }
             .Dark .dashboard-sidebar-wrapper {
                 border-color: #383838;
@@ -182,6 +186,7 @@
                 background: linear-gradient(0deg, rgba(219,255,255,1) 0%, rgba(246,229,224,1) 100%);
                 padding: 20px 20px;
             }
+
         </style>
     </body>
 </html>
