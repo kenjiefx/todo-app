@@ -1,4 +1,4 @@
-app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlSvc){
+app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlSvc,ActivityTracker,$patch,CalendarSvc){
 
     $scope.UtilSvc = new UtilSvc;
 
@@ -11,6 +11,7 @@ app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlS
     $scope.totalFilteredView = 0;
 
     $scope.Task = TaskSvc.task.factory();
+    $scope.CalendarSvc = CalendarSvc;
 
     let filterView=function(view,page){
         $scope.taskList = [];
@@ -36,6 +37,12 @@ app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlS
             return 'is-active';
         }
         return '';
+    }
+
+    $scope.viewTask = function(taskIndex){
+        //console.log($scope.taskList[taskIndex]);
+        $scope.Task.import($scope.taskList[taskIndex]);
+        $patch('TaskSingleView');
     }
 
     PageSvc.setStatus('dashboard');

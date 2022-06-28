@@ -1,8 +1,8 @@
 app.service('UtilSvc',function($scope){
     class UtilSvc {
         constructor(){}
-        getCurrentTimestamp(){
-            return moment().format('MMMM Do YYYY, h:mm:ss a');
+        getCurrentTimestamp(format){
+            return moment().format(format);
         }
         toFormatDate(date){
             return moment(date).format('MMMM Do YYYY, h:mm:ss a');

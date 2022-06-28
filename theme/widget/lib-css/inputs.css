@@ -104,7 +104,7 @@ textarea:focus {
 
 /* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkbox-checkmark {
-  background-color: #2196F3;
+  background-color: #009688;
 }
 
 /* Create the checkbox-checkmark/indicator (hidden when not checked) */
