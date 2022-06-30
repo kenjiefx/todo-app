@@ -111,6 +111,24 @@
                                                                 <div class="mg-top-md">
                                                                     <div class="checkbox-container">
                                                                         <input type="checkbox">
+                                                                        <span xclick="TaskSvc.update.todo.complete({{$index}})" class="checkbox-checkmark"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="view-task-todos-right">
+                                                                    <div class="small-text subtext fw300 is-text">{{todo.description}}</div>
+                                                                    <div class="mg-top-sm"></div>
+                                                                    <div class="flex ac">
+                                                                        <div class="task-status is-{{todo.status}}">{{todo.status}}</div>
+                                                                        <div class="lighter-text mg-left-sm is-text x-small-text subtext fw400">since {{$parent.UtilSvc.toTimeAgo(todo.updatedAt)}}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div xif="todo.status=='completed'">
+                                                            <div class="view-task-todos-item">
+                                                                <div class="mg-top-md">
+                                                                    <div class="checkbox-container">
+                                                                        <input type="checkbox" checked="checked">
                                                                         <span class="checkbox-checkmark"></span>
                                                                     </div>
                                                                 </div>

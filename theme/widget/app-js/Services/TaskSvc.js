@@ -70,6 +70,14 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch)
                         updateToDoItem(todoIndex,input.$element.value);
                         purgeNewToDoItems();
                         $patch('TaskToDoList');
+                    },
+                    complete:function(index){
+                        console.log($scope.Task.todos[index].description);
+                        console.log($scope.Task.index);
+                        $scope.Task.todos[index].status = 'completed';
+                        $scope.Task.todos[index].updatedAt = Date.now();
+                        TaskDB.updateTask(index,$scope.Task);
+                        $patch('TaskSingleView');
                     }
                 }
             },

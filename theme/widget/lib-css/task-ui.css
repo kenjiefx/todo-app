@@ -13,19 +13,7 @@
 }
 
 
-.task-status {
-    font-family: 'Poppins';
-    font-size: 9.5px;
-    color: #009688;
-    font-weight: 400;
-    background-color: #dafffd;
-    padding: 2px 4px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    height: max-content;
-    width: max-content;
-}
+
 
 .todo-status-badge {
     font-family: 'Poppins';

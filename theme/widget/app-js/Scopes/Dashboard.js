@@ -20,9 +20,9 @@ app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlS
         for (var i = 0; i < allTasks.length; i++) {
             let singleTask = allTasks[i];
             singleTask.metrics.toDoCount = singleTask.todos.length;
-            if (i===0) {
-                $scope.Task.import(singleTask);
-            }
+            // if (i===0) {
+            //     $scope.Task.import(singleTask);
+            // }
             if (view==='all') {
                 $scope.totalFilteredView++;
                 $scope.taskList.push(singleTask);
@@ -42,8 +42,11 @@ app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlS
     $scope.viewTask = function(taskIndex){
         //console.log($scope.taskList[taskIndex]);
         $scope.Task.import($scope.taskList[taskIndex]);
+        $scope.Task.index = taskIndex;
         $patch('TaskSingleView');
     }
+
+    $scope.viewTask(0);
 
     PageSvc.setStatus('dashboard');
 

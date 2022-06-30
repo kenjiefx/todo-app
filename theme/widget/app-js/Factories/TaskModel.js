@@ -10,7 +10,8 @@ app.factory('TaskModel',function(){
             this.todos = [];
             this.metrics = {
                 completed: 0
-            }
+            };
+            this.index = null;
         }
         import(task){
             this.createdAt = task.createdAt;
