@@ -45,6 +45,7 @@ app.service('CalendarSvc',function($scope,$patch,TaskDB,$block,$hide){
                     calTask.index = i;
                     calTask.status = singleTask.status;
                     calTask.createdAt = singleTask.createdAt;
+                    calTask.updatedAt = singleTask.updatedAt;
                     if (Date.now()>comparableDate) {
                         calTask.hasPastDue = true;
                     }

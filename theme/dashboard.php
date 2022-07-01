@@ -129,7 +129,7 @@
                                                                 <div class="mg-top-md">
                                                                     <div class="checkbox-container">
                                                                         <input type="checkbox" checked="checked">
-                                                                        <span class="checkbox-checkmark"></span>
+                                                                        <span xclick="TaskSvc.update.todo.uncomplete({{$index}})" class="checkbox-checkmark"></span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="view-task-todos-right">
@@ -187,7 +187,7 @@
                                                             <ul xrepeat="CalendarView.taskList as task">
                                                                 <li class="task-due-task-item">
                                                                     <div class="task-due-task-item-content">
-                                                                        <div class="small-text subtext fw300 is-text">{{task.about}}</div>
+                                                                        <div class="small-text subtext fw300 is-text">{{task.about}} — updated {{$parent.UtilSvc.toTimeAgo(task.updatedAt)}}</div>
                                                                     </div>
                                                                 </li>
                                                             </ul>

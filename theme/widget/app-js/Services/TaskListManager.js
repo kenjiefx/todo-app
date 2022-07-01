@@ -17,8 +17,11 @@ app.service('TaskListManager',function(){
             return (this.taskList.length===0);
         }
         pushTask(Task){
-            console.log(this.taskList);
             this.taskList.push(Task);
+        }
+        updateTask(index,Task){
+            Task.updatedAt = Date.now();
+            this.taskList[index] = Task;
         }
     }
 

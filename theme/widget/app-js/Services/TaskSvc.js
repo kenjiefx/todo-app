@@ -28,6 +28,16 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch)
         $scope.Task.todos = tmpTodos;
     }
 
+    let isTaskComplete=function(Task){
+        let statusIs = 'completed';
+        for (var i = 0; i < Task.todos.length; i++) {
+            let todoStatus = Task.todos[i].status;
+            if (todoStatus==='pending') statusIs = 'pending';
+        }
+        $scope.taskList[Task.index].status = statusIs;
+        $scope.Task.status = statusIs;
+    }
+
 
     if (undefined==$scope.TaskSvc) {
         $scope.TaskSvc = {
@@ -72,12 +82,22 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch)
                         $patch('TaskToDoList');
                     },
                     complete:function(index){
-                        console.log($scope.Task.todos[index].description);
-                        console.log($scope.Task.index);
                         $scope.Task.todos[index].status = 'completed';
                         $scope.Task.todos[index].updatedAt = Date.now();
-                        TaskDB.updateTask(index,$scope.Task);
+                        $scope.Task.metrics.completed++;
+                        isTaskComplete($scope.Task);
+                        TaskDB.updateTask($scope.Task.index,$scope.Task);
                         $patch('TaskSingleView');
+                        $patch('DashboardTaskList');
+                    },
+                    uncomplete:function(index){
+                        $scope.Task.todos[index].status = 'pending';
+                        $scope.Task.todos[index].updatedAt = Date.now();
+                        $scope.Task.metrics.completed--;
+                        isTaskComplete($scope.Task);
+                        TaskDB.updateTask($scope.Task.index,$scope.Task);
+                        $patch('TaskSingleView');
+                        $patch('DashboardTaskList');
                     }
                 }
             },

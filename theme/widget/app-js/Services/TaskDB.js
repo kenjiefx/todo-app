@@ -61,7 +61,8 @@ app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
             return taskDB.tasks.taskList;
         },
         updateTask:function(index,Task){
-            
+            taskDB.tasks.updateTask(index,Task);
+            taskDB.saveSnapshot();
         }
     };
 });
