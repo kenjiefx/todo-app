@@ -1,0 +1,1 @@
+strawberry.create('app');

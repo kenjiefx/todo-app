@@ -1,4 +1,4 @@
-app.service('TaskDBUser',function($scope){
+app.service('TaskDBUser',function(){
     class TaskDBUser {
         constructor(){
             this.createdAt = Date.now();

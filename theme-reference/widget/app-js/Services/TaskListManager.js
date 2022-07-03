@@ -1,4 +1,4 @@
-app.service('TaskListManager',function(){
+app.service('TaskListManager',()=>{
     class TaskListManager {
         constructor(){
             this.createdAt = Date.now();
@@ -23,10 +23,10 @@ app.service('TaskListManager',function(){
     }
 
     return {
-        create:function(){
+        create:()=>{
             return new TaskListManager;
         },
-        import:function(rawData){
+        import:(rawData)=>{
             let exportable = new TaskListManager;
             exportable.import(rawData);
             return exportable;
