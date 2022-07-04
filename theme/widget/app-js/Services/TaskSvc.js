@@ -1,4 +1,4 @@
-app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch){
+app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch,ActivityTracker){
 
     let purgeNewToDoItems = function(){
         let tmpTodos = [];
@@ -89,6 +89,11 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch)
                         TaskDB.updateTask($scope.Task.index,$scope.Task);
                         $patch('TaskSingleView');
                         $patch('DashboardTaskList');
+                        let activityEvent = ActivityTracker.newEvent();
+                        activityEvent.description = 'Completed a to do item.';
+                        activityEvent.tag = 'Todo Update';
+                        ActivityTracker.track(activityEvent);
+
                     },
                     uncomplete:function(index){
                         $scope.Task.todos[index].status = 'pending';
@@ -98,6 +103,10 @@ app.service('TaskSvc',function($scope,TaskModel,ToDoItem,TaskDB,ErrorSvc,$patch)
                         TaskDB.updateTask($scope.Task.index,$scope.Task);
                         $patch('TaskSingleView');
                         $patch('DashboardTaskList');
+                        let activityEvent = ActivityTracker.newEvent();
+                        activityEvent.description = 'Un-completed a to do item.';
+                        activityEvent.tag = 'Todo Update';
+                        ActivityTracker.track(activityEvent);
                     }
                 }
             },

@@ -1,5 +1,5 @@
-app.service('TaskListManager',function(){
-    class TaskListManager {
+app.service('TaskListManager',function(TaskModel){
+    class TaskListManagerApp {
         constructor(){
             this.createdAt = Date.now();
             this.updatedAt = Date.now();
@@ -20,17 +20,23 @@ app.service('TaskListManager',function(){
             this.taskList.push(Task);
         }
         updateTask(index,Task){
-            Task.updatedAt = Date.now();
-            this.taskList[index] = Task;
+            // console.log('----tasklist Manager side---');
+            // console.log('Task Index to update: '+index);
+            // console.log('Task Object: ');
+            // console.log(Task);
+            let task = new TaskModel();
+            task.import(Task);
+            task.updatedAt = Date.now();
+            this.taskList[index] = task;
         }
     }
 
     return {
         create:function(){
-            return new TaskListManager;
+            return new TaskListManagerApp;
         },
         import:function(rawData){
-            let exportable = new TaskListManager;
+            let exportable = new TaskListManagerApp;
             exportable.import(rawData);
             return exportable;
         }

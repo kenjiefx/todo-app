@@ -205,6 +205,11 @@
                             <div class="dashboard-viewmetrics">
                                 <div class="dashboard-section-spacer">
                                     <div class="small-text primetext fw500 ltr-space--3 is-text">App Activity</div>
+                                    <div class="small-text subtext fw300 is-text">Tracking your activity per day</div>
+                                    <div class="mg-top-md"></div>
+                                    <div xpatch="@ActivityTrackerDashboard">
+                                        <div id="app-activity-dashboard"></div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -245,7 +250,22 @@
             }
         </style>
         <style media="screen">
-
+            .app-activity-row {
+                display: flex;
+                margin-bottom: 3px;
+            }
+            .Dark .app-activity-cell {
+                border-color: #323232;
+            }
+            .app-activity-cell {
+                width: 16px;
+                height: 16px;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 2px;
+                margin-right: 2px;
+                border-color: #d9d9d9;
+            }
             .calendar-view-slider {
                 transition: 0.5s;
             }
@@ -345,6 +365,7 @@
             }
             .dashboard-viewmetrics {
                 width: 350px;
+                padding-top: 20px;
             }
             .dashboard-viewlist {
 

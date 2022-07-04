@@ -1,4 +1,4 @@
-app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlSvc,ActivityTracker,$patch,CalendarSvc){
+app.scope('Dashboard',function($scope,PageSvc,UtilSvc,TaskSvc,TaskDB,Router,UrlSvc,$patch,CalendarSvc){
 
     $scope.UtilSvc = new UtilSvc;
 

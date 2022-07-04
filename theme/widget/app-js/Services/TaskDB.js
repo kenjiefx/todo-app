@@ -28,6 +28,8 @@ app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
             this.meta = TaskDBMeta.import(rawDB.meta);
         }
         saveSnapshot(){
+            // console.log(this.exportDB());
+            // console.log('----------------------------------------------------------------');
             localStorage.setItem('tskdb',JSON.stringify(this.exportDB()));
         }
     }
@@ -61,6 +63,10 @@ app.service('TaskDB',function($scope,TaskDBUser,TaskDBMeta,TaskListManager){
             return taskDB.tasks.taskList;
         },
         updateTask:function(index,Task){
+            // console.log('----taskDB side---');
+            // console.log('Task Index to update: '+index);
+            // console.log('Task Object: ');
+            // console.log(Task);
             taskDB.tasks.updateTask(index,Task);
             taskDB.saveSnapshot();
         }
