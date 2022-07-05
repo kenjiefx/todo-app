@@ -1,5 +1,5 @@
 app.service('TaskDBMeta',()=>{
-    class TaskDBMeta {
+    class Metadata {
         constructor(){
             this.createdAt = Date.now();
             this.updatedAt = Date.now();
@@ -11,10 +11,16 @@ app.service('TaskDBMeta',()=>{
             this.createdAt = rawData.createdAt;
             this.updatedAt = rawData.updatedAt;
         }
+        export(){
+            return {
+                createdAt: this.createdAt,
+                updatedAt: this.updatedAt
+            }
+        }
     }
     return {
         create:function(){
-            return new TaskDBMeta();
+            return new Metadata;
         },
         import:function(rawData){
             let exportable = new TaskDBMeta;

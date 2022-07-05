@@ -1,20 +1,26 @@
-app.service('TaskSvc',($scope,TaskDB,TaskModel)=>{
-    $scope.Task = new TaskModel;
-    let createNewTask=()=>{
-
-    }
+app.service('TaskSvc',($scope,TaskDBService,TaskModel,ToDoItem)=>{
     return {
         taskDB: {
             hasInstance:()=>{
-                return TaskDB.hasInstance;
+                return TaskDBService.hasInstance();
             },
             create:()=>{
-                return TaskDB.create(()=>{});
+                return TaskDBService.create(()=>{});
             }
         },
         task: {
             factory:()=>{
                 return new TaskModel;
+            },
+            save:(task)=>{
+                if (task instanceof TaskModel) {
+                    TaskDBService.tasks.add(task.export());
+                }
+            }
+        },
+        todo:{
+            factory:()=>{
+                return new ToDoItem;
             }
         }
     }

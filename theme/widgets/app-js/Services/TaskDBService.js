@@ -1,4 +1,4 @@
-app.service('TaskDB',($scope,TaskDBUser,TaskDBMeta,TaskListManager)=>{
+app.service('TaskDBService',($scope,TaskDBUser,TaskDBMeta,TaskListManager)=>{
     class TaskDB {
         constructor(){
             this.createdAt = Date.now();
@@ -10,16 +10,16 @@ app.service('TaskDB',($scope,TaskDBUser,TaskDBMeta,TaskListManager)=>{
         setCreatedAt(date){
             this.createdAt = date;
         }
-        exportDB(){
+        export(){
             return {
                 createdAt: this.createdAt,
                 updatedAt: this.updatedAt,
-                user: this.user,
-                tasks: this.tasks,
-                meta: this.meta
+                user: this.user.export(),
+                tasks: this.tasks.export(),
+                meta: this.meta.export()
             }
         }
-        importDB(rawDB){
+        import(rawDB){
             this.createdAt = rawDB.createdAt;
             this.updatedAt = rawDB.updatedAt;
             this.user = TaskDBUser.import(rawDB.user);
@@ -27,34 +27,36 @@ app.service('TaskDB',($scope,TaskDBUser,TaskDBMeta,TaskListManager)=>{
             this.meta = TaskDBMeta.import(rawDB.meta);
         }
         saveSnapshot(){
-            localStorage.setItem('tskdb',JSON.stringify(this.exportDB()));
+            console.log(this.export());
+            //localStorage.setItem('tskdb',JSON.stringify(this.export()));
         }
     }
 
+    // Retrieving any saved data in the local storage
     let rawDB = localStorage.getItem('tskdb');
-    let hasInstance = function(){
-        return (null!==rawDB) ? true : false;
-    }
+    // Creates a new instance of TaskDB
     let taskDB = new TaskDB();
-    if (null!==rawDB) {
-        taskDB.importDB(JSON.parse(rawDB));
-    }
+    // Imports raw saved data from the local storage to our TaskDB Object
+    if (null!==rawDB) taskDB.import(JSON.parse(rawDB));
+    // Checks whether the we have previously saved Task DB data in the local storage
+    let hasInstance = () => (null!==rawDB) ? true : false;
+
+    console.log(taskDB);
 
     return {
-        hasInstance: hasInstance(),
-        isTaskEmpty:function(){
-            return taskDB.tasks.isEmpty();
-        },
-        create:(callback)=>{
+        hasInstance:() => hasInstance(),
+        isTaskEmpty:() => taskDB.tasks.isEmpty(),
+        create:()=>{
             if (!hasInstance()) {
                 let taskDB = new TaskDB();
                 taskDB.saveSnapshot();
             }
-            callback();
         },
-        addTask:function(Task){
-            taskDB.tasks.pushTask(Task);
-            taskDB.saveSnapshot();
+        tasks:{
+            add:(task)=>{
+                taskDB.tasks.pushTask(task);
+                taskDB.saveSnapshot();
+            }
         },
         getAllTasks:function(){
             return taskDB.tasks.taskList;

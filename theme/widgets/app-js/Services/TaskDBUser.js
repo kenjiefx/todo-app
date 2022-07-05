@@ -1,5 +1,5 @@
 app.service('TaskDBUser',($scope)=>{
-    class TaskDBUser {
+    class User {
         constructor(){
             this.createdAt = Date.now();
             this.updatedAt = Date.now();
@@ -11,11 +11,17 @@ app.service('TaskDBUser',($scope)=>{
             this.createdAt = rawData.createdAt;
             this.updatedAt = rawData.updatedAt;
         }
+        export(){
+            return {
+                createdAt: this.createdAt,
+                updatedAt: this.updatedAt
+            }
+        }
     }
 
     return {
         create:function(){
-            return new TaskDBUser;
+            return new User;
         },
         import:function(rawData){
             let exportable = new TaskDBUser;

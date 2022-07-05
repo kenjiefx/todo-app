@@ -1,9 +1,9 @@
 app.service('TaskListManager',()=>{
-    class TaskListManager {
+    class TaskList {
         constructor(){
             this.createdAt = Date.now();
             this.updatedAt = Date.now();
-            this.taskList = [];
+            this.list = [];
         }
         setCreatedAt(date){
             this.createdAt = date;
@@ -11,20 +11,26 @@ app.service('TaskListManager',()=>{
         import(rawData){
             this.createdAt = rawData.createdAt;
             this.updatedAt = rawData.updatedAt;
-            this.taskList = rawData.taskList;
+            this.list = rawData.list;
+        }
+        export(){
+            return {
+                createdAt: this.createdAt,
+                updatedAt: this.updatedAt,
+                list: this.list
+            }
         }
         isEmpty(){
-            return (this.taskList.length===0);
+            return (this.list.length===0);
         }
-        pushTask(Task){
-            console.log(this.taskList);
-            this.taskList.push(Task);
+        pushTask(task){
+            this.list.push(task);
         }
     }
 
     return {
         create:()=>{
-            return new TaskListManager;
+            return new TaskList;
         },
         import:(rawData)=>{
             let exportable = new TaskListManager;
